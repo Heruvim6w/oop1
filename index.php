@@ -17,6 +17,13 @@
 
         <button type="submit" name="add" value="Add">Добавить</button>
     </form>
+    <br>
+    <form action="" method="post">
+        <input type="text" id="nameForSearch" name="nameForSearch" placeholder="Название продукта">
+        <label for="nameForSearch">Название продукта</label>
+
+        <button type="submit" name="search" value="Search">Поиск</button>
+    </form>
 </body>
 </html>
 <?php
@@ -32,5 +39,10 @@ if (isset($_POST['add'])) {
         echo $item . '<br>';
     }
 //    echo tempnam(sys_get_temp_dir(), 'products');
+}
+
+if (isset($_POST['search'])) {
+    $products = new Product();
+    echo $products->searchByName($_SESSION['products'], $_POST['nameForSearch']);
 }
 
