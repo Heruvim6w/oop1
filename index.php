@@ -21,12 +21,16 @@
 </html>
 <?php
 require_once('Classes/Product.php');
-$products = [];
+session_start();
+//$_SESSION['products']=[];
+
 if (isset($_POST['add'])) {
-    $products[] = array_push($products, new Product($_POST['name'], $_POST['price']));
-var_dump($products);
-//    foreach ($products as $product) {
-//        echo $product->getProduct();
-//    }
+    $products = new Product($_POST['name'], $_POST['price']);
+    $_SESSION['products'][] = $products->getProduct();
+
+    foreach ($_SESSION['products'] as $item) {
+        echo $item . '<br>';
+    }
+//    echo tempnam(sys_get_temp_dir(), 'products');
 }
 
